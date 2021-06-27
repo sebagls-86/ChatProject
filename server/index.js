@@ -18,9 +18,12 @@ const mongoose = require('mongoose');
 const socketio = require('socket.io')
 const io = socketio(http);
 
+require('dotenv').config()
+require('./database')
 
-const mongoDB = "mongodb+srv://sr_sebastian:Sebastiang1103.@cluster0.bg8qj.mongodb.net/chat-database?retryWrites=true&w=majority";
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => console.log('connected')).catch(err => console.log(err))
+//const mongoDB = "mongodb+srv://sr_sebastian:Sebastiang1103.@cluster0.bg8qj.mongodb.net/chat-database?retryWrites=true&w=majority";
+//mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => console.log('connected')).catch(err => console.log(err))
+
 const { addUser, getUser, removeUser } = require('./helper');
 const Message = require('./models/Message');
 const PORT = process.env.PORT || 5000;
