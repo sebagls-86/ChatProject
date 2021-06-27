@@ -8,7 +8,7 @@ const Home = () => {
     const { user, setUser } = useContext(UserContext);
     const [room, setRoom] = useState('');
     const [rooms, setRooms] = useState([]);
-    const ENDPT = 'http://localhost:5000/';
+    const ENDPT = 'https://srschat.herokuapp.com/';
     useEffect(() => {
         socket = io(ENDPT);
         return () => {
