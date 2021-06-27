@@ -17,7 +17,7 @@ const Signup = () => {
         setPasswordError('');
         console.log(name, email, password)
         try {
-            const res = await fetch('https://srschat.herokuapp.com/signup', {
+            const res = await fetch('https://srschat.herokuapp.com/signup', { //https://srschat.herokuapp.com
                 method: 'POST',
                 credentials: 'include',
                 body: JSON.stringify({ name, email, password }),

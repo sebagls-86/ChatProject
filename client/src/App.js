@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     const verifyUser = async () => {
       try {
-        const res = await fetch('https://srschat.herokuapp.com/verifyuser', {
+        const res = await fetch('http://localhost:5000/verifyuser', {
           credentials: 'include',
           headers: { 'Content-Type': 'application/json' }
         });

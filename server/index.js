@@ -3,7 +3,7 @@ const app = express();
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 var corsOptions = {
-    origin: 'https://srschat.herokuapp.com/',
+    origin: 'https://srschat.netlify.app',
     credentials: true,
     optionsSuccessStatus: 200 // For legacy browser support
 }
