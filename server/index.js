@@ -14,7 +14,7 @@ app.use(cookieParser());
 app.use(authRoutes);
 
 const http = require('http').createServer(app);
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 const socketio = require('socket.io')
 const io = socketio(http);
 
@@ -92,6 +92,6 @@ io.on('connection', (socket) => {
     })
 });
 
-http.listen(PORT, () => {
+http.listen(process.env.PORT || 5000, () => {
     console.log(`listening on port ${PORT}`);
 });
