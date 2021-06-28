@@ -14,7 +14,8 @@ function App() {
       try {
         const res = await fetch('https://srschat.herokuapp.com/verifyuser', {
           credentials: 'include',
-          headers: { 'Content-Type': 'application/json' }
+          
+          headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':  'https://srschat.vercel.app' }
         });
         const data = await res.json();
         setUser(data);
