@@ -22,7 +22,7 @@ require('./database')
 
 const { addUser, getUser, removeUser } = require('./helper');
 const Message = require('./models/Message');
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 const Room = require('./models/Room');
 
 app.get('/', (req,res) => {
