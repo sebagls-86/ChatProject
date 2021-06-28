@@ -3,9 +3,9 @@ const app = express();
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 var corsOptions = {
-    origin: 'https://srschat.netlify.app', 
+    origin: '*', 
     transports: ['websocket'],
-    credentials: true,
+    
     optionsSuccessStatus: 200 // For legacy browser support
 }
 const authRoutes = require('./routes/authRoutes');
