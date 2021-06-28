@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+require('dotenv').config()
+require('./database')
 //const cors = require('cors')
 const cookieParser = require('cookie-parser')
 
@@ -8,7 +10,7 @@ app.use(function(req, res, next){
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-with, Content-type, Accept");
     next();
 
-});
+})
 
 const authRoutes = require('./routes/authRoutes');
 //app.use(cors(corsOptions));
@@ -21,8 +23,7 @@ const http = require('http').createServer(app);
 const socketio = require('socket.io')
 const io = socketio(http);
 
-require('dotenv').config()
-require('./database')
+
 
 const { addUser, getUser, removeUser } = require('./helper');
 const Message = require('./models/Message');
