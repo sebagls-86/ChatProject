@@ -5,7 +5,7 @@ require('./database')
 //const cors = require('cors')
 const cookieParser = require('cookie-parser')
 
-app.use(function(req, res, next){
+app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*")
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-with, Content-type, Accept");
     next();
@@ -25,18 +25,24 @@ const io = socketio(http);
 
 
 
-const { addUser, getUser, removeUser } = require('./helper');
+const {
+    addUser,
+    getUser,
+    removeUser
+} = require('./helper');
 const Message = require('./models/Message');
 const PORT = process.env.PORT;
 const Room = require('./models/Room');
 
-app.get('/', (req,res) => {
+app.get('/', (req, res) => {
     res.send('conectado')
 })
 
 app.get('/set-cookies', (req, res) => {
     res.cookie('username', 'Tony');
-    res.cookie('isAuthenticated', true, { maxAge: 24 * 60 * 60 * 1000 });
+    res.cookie('isAuthenticated', true, {
+        maxAge: 24 * 60 * 60 * 1000
+    });
     res.send('cookies are set');
 })
 app.get('/get-cookies', (req, res) => {
@@ -51,14 +57,23 @@ io.on('connection', (socket) => {
         socket.emit('output-rooms', result)
     })
     socket.on('create-room', name => {
-        
-        const room = new Room({ name });
+
+        const room = new Room({
+            name
+        });
         room.save().then(result => {
             io.emit('room-created', result)
         })
     })
-    socket.on('join', ({ name, room_id, user_id }) => {
-        const { error, user } = addUser({
+    socket.on('join', ({
+        name,
+        room_id,
+        user_id
+    }) => {
+        const {
+            error,
+            user
+        } = addUser({
             socket_id: socket.id,
             name,
             room_id,
@@ -88,7 +103,9 @@ io.on('connection', (socket) => {
 
     })
     socket.on('get-messages-history', room_id => {
-        Message.find({ room_id }).then(result => {
+        Message.find({
+            room_id
+        }).then(result => {
             socket.emit('output-messages', result)
         })
     })
