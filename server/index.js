@@ -8,7 +8,7 @@ app.use(function(req, res, next){
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-with, Content-type, Accept");
     next();
 
-})
+});
 
 const authRoutes = require('./routes/authRoutes');
 //app.use(cors(corsOptions));
