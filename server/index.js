@@ -94,6 +94,6 @@ io.on('connection', (socket) => {
     })
 });
 
-http.listen(process.env.PORT || 5000, () => {
+http.listen(process.env.PORT, () => {
     console.log(`listening on port ${PORT}`);
 });
