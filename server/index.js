@@ -2,12 +2,23 @@ const express = require('express');
 const app = express();
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
-var corsOptions = {
-    origin: '*', 
-    transports: ['websocket'],
-    
-    optionsSuccessStatus: 200 // For legacy browser support
+
+const whitelist = ["https://srschat.vercel.app/", "http://localhost:3000"]
+const corsOptions = {
+    origin: function (origin, callback) {
+        console.log(origin)
+        if (whitelist.indexOf(origin) !== -1) {
+            callback(null, true)
+        } else {
+            callback(new Error('Not allowed by CORS'))
+        }
+    },
+    credentials: true,
+    enablePreflight: true,
+    optionsSuccessStatus: 200
 }
+
+
 const authRoutes = require('./routes/authRoutes');
 app.use(cors(corsOptions));
 app.use(express.json());
