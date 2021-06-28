@@ -20,7 +20,7 @@ app.use(authRoutes);
 
 const http = require('http').createServer(app);
 
-const socketio = require('socket.io')
+const socketio = require('socket.io');
 const io = socketio(http);
 
 
