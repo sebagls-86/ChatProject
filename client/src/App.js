@@ -13,7 +13,7 @@ function App() {
     const verifyUser = async () => {
       try {
         const res = await fetch('https://srschat.herokuapp.com/verifyuser', {
-          credentials: 'include',
+          //credentials: 'include',
           
           headers: { 'Content-Type': 'application/json' }
         });
