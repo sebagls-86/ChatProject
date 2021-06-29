@@ -8,6 +8,8 @@ const cookieParser = require('cookie-parser')
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*")
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-with, Content-type, Accept");
+    
+    console.log("headers")
     next();
 
 })
@@ -53,8 +55,10 @@ app.get('/get-cookies', (req, res) => {
 
 io.on('connection', (socket) => {
     console.log(socket.id);
+    console.log("connection 1")
     Room.find().then(result => {
         socket.emit('output-rooms', result)
+        console.log("connection 2")
     })
     socket.on('create-room', name => {
 
@@ -80,6 +84,7 @@ io.on('connection', (socket) => {
             user_id
         })
         socket.join(room_id);
+        console.log("connection 3")
         if (error) {
             console.log('join error', error)
         } else {
@@ -98,6 +103,7 @@ io.on('connection', (socket) => {
         const msg = new Message(msgToStore);
         msg.save().then(result => {
             io.to(room_id).emit('message', result);
+            console.log("connection4")
             callback()
         })
 
@@ -107,13 +113,16 @@ io.on('connection', (socket) => {
         Message.find({
             room_id
         }).then(result => {
+            console.log("connection5")
             socket.emit('output-messages', result)
         })
     })
     socket.on('disconnect', () => {
         const user = removeUser(socket.id);
+        console.log('socket desconectado')
     })
 });
+
 
 http.listen(process.env.PORT, () => {
     console.log(`listening on port ${PORT}`);
