@@ -7,7 +7,7 @@ import Input from './input/Input';
 import './Chat.css';
 let socket;
 const Chat = () => {
-    const ENDPT = 'https://srschat.herokuapp.com';
+    const ENDPT = 'wss://srschat.herokuapp.com';
 
     const { user, setUser } = useContext(UserContext);
     let { room_id, room_name } = useParams();
