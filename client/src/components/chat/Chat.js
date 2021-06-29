@@ -7,7 +7,7 @@ import Input from './input/Input';
 import './Chat.css';
 let socket;
 const Chat = () => {
-    const ENDPT = 'https://srschat.herokuapp.com/';
+    const ENDPT = 'https://srschat.herokuapp.com';
 
     const { user, setUser } = useContext(UserContext);
     let { room_id, room_name } = useParams();
@@ -16,13 +16,12 @@ const Chat = () => {
     useEffect(() => {
         socket = io(ENDPT);
         socket.emit('join', { name: user.name, room_id, user_id: user._id })
-        
     }, [])
     useEffect(() => {
         socket.on('message', message => {
             setMessages([...messages, message])
         })
-    }, [])
+    }, [messages])
     useEffect(() => {
         socket.emit('get-messages-history', room_id)
         socket.on('output-messages', messages => {
