@@ -16,20 +16,19 @@ const Chat = () => {
     useEffect(() => {
         socket = io(ENDPT);
         socket.emit('join', { name: user.name, room_id, user_id: user._id })
-
+        
+    }, [])
+    useEffect(() => {
         socket.on('message', message => {
             setMessages([...messages, message])
         })
-
+    }, [])
+    useEffect(() => {
         socket.emit('get-messages-history', room_id)
         socket.on('output-messages', messages => {
             setMessages(messages)
         })
-
-       
     }, [])
-   
-
     const sendMessage = event => {
         event.preventDefault();
         if (message) {
