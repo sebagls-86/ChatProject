@@ -20,7 +20,7 @@ app.use(authRoutes);
 
 const http = require('http').createServer(app);
 
-const socketio = require('socket.io');
+const socketio = require('socket.io')
 const io = socketio(http);
 
 
@@ -102,8 +102,7 @@ io.on('connection', (socket) => {
         })
 
     })
-
-
+    
     socket.on('get-messages-history', room_id => {
         Message.find({
             room_id
