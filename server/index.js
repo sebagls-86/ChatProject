@@ -25,7 +25,12 @@ const http = require('http').createServer(app);
 const socketio = require('socket.io')
 const io = socketio(http);
 
+function sendHeartbeat(){ 
+    setTimeout(sendHeartbeat, 8000); 
+    io.sockets.emit('ping', { beat : 1 }); 
+} 
 
+setTimeout(sendHeartbeat, 8000);
 
 const {
     addUser,

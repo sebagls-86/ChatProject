@@ -22,6 +22,14 @@ const Chat = () => {
             setMessages([...messages, message])
         })
     }, [messages])
+
+useEffect(() => {
+    socket.on('ping', function(data){ 
+        socket.emit('pong', {beat: 1}); 
+       }); 
+
+    }, [])
+
     useEffect(() => {
         socket.emit('get-messages-history', room_id)
         socket.on('output-messages', messages => {
