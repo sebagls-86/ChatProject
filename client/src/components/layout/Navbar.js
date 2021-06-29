@@ -9,7 +9,7 @@ const Navbar = () => {
     const logout = async () => {
         try {
             const res = await fetch('https://srschat.herokuapp.com/logout', {
-                credentials: 'include',
+                //credentials: 'include',
             });
             const data = res.json();
             console.log('logout data', data);
