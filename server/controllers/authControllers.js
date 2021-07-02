@@ -46,6 +46,7 @@ module.exports.login = async (req, res) => {
     try {
         const user = await User.login(email, password);
         const token = createJWT(user._id);
+        console.log("entra al jwt)")
         res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 })
         res.status(201).json({ user });
     } catch (error) {
