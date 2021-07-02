@@ -74,15 +74,8 @@ io.on('connection', (socket) => {
             io.emit('room-created', result)
         })
     })
-    socket.on('join', ({
-        name,
-        room_id,
-        user_id
-    }) => {
-        const {
-            error,
-            user
-        } = addUser({
+    socket.on('join', ({ name, room_id, user_id}) => {
+        const {error, user} = addUser({
             socket_id: socket.id,
             name,
             room_id,
