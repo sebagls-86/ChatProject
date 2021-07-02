@@ -19,7 +19,7 @@ const Signup = () => {
         try {
             const res = await fetch('https://srschat.herokuapp.com/signup', { 
                 method: 'POST',
-                
+                credentials: 'include',
                 body: JSON.stringify({ name, email, password }),
                 headers: { 'Content-Type': 'application/json' }
             });
