@@ -21,13 +21,13 @@ const Chat = () => {
         socket.on('message', message => {
             setMessages([...messages, message])
         })
-    }, [messages])
+    }, [])
     useEffect(() => {
         socket.emit('get-messages-history', room_id)
         socket.on('output-messages', messages => {
             setMessages(messages)
         })
-    }, [])
+    }, [messages])
     const sendMessage = event => {
         event.preventDefault();
         if (message) {

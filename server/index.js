@@ -117,11 +117,8 @@ io.on('connection', (socket) => {
     })
     
     socket.on('get-messages-history', room_id => {
-        Message.find({
-            room_id
-        }).then(result => {
-            console.log("connection5")
-            socket.emit('output-messages', result)
+        Message.find({ room_id }).sort({_id:-1}).limit(5).then(result => {
+            socket.emit('output-messages', result.reverse())
         })
     })
     socket.on('disconnect', () => {
