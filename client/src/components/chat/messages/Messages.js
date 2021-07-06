@@ -6,7 +6,7 @@ const Messages = ({ messages, user_id }) => {
     return (
         <STB className="messages">
 
-            {messages.slice(0,5).map((message, i) =>  (
+            {messages.slice(0,10).map((message, i) =>  (
                 <Message key={message._id} message={message} current_uid={user_id} />
             ))}
 
